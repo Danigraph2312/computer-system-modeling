@@ -1,0 +1,1359 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="no"?>
+<archive xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="PROJECT.jsimg" timestamp="Fri Jan 17 23:45:56 CET 2025" xsi:noNamespaceSchemaLocation="Archive.xsd">
+    <sim disableStatisticStop="false" logDecimalSeparator="," logDelimiter=";" logPath="/Users/dmensorio/Desktop" logReplaceMode="0" maxEvents="-1" maxSamples="1000000" name="PROJECT.jsimg" polling="1.0" xsi:noNamespaceSchemaLocation="SIMmodeldefinition.xsd">
+        <userClass customers="20" name="Heavy computation tasks" priority="0" referenceSource="Storage" softDeadline="0.0" type="closed"/>
+        <userClass customers="32" name="Low computation tasks" priority="0" referenceSource="Storage" softDeadline="0.0" type="closed"/>
+        <node name="I/O">
+            <classSoftDeadlines>
+                <softDeadline>0.0</softDeadline>
+                <softDeadline>0.0</softDeadline>
+            </classSoftDeadlines>
+            <quantumSize>
+                <quantaSize>0.0</quantaSize>
+            </quantumSize>
+            <quantumSwitchoverTime>
+                <quantumSwitchoverTime>0.0</quantumSwitchoverTime>
+            </quantumSwitchoverTime>
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="PSServer">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>1</value>
+                </parameter>
+                <parameter classPath="java.lang.Integer" name="maxRunning">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>20.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>6.666666666666667</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.Boolean" name="PSPriorityUsed">
+                    <value>false</value>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.PSStrategy" name="PSStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Double" name="serviceWeights">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="classParallelism">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="serverNames">
+                    <subParameter classPath="java.lang.String" name="serverTypesNames">
+                        <value>I/O - Server Type 1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="serversPerServerType">
+                    <subParameter classPath="java.lang.Integer" name="serverTypesNumOfServers">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Object" name="serverCompatibilities">
+                    <subParameter array="true" classPath="java.lang.Boolean" name="serverTypesCompatibilities">
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.String" name="schedulingPolicy">
+                    <value>ALIS (Assign Longest Idle Server)</value>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>High Perfomance Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Energy Efficient Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>High Perfomance Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Energy Efficient Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Storage">
+            <classSoftDeadlines>
+                <softDeadline>0.0</softDeadline>
+                <softDeadline>0.0</softDeadline>
+            </classSoftDeadlines>
+            <quantumSize>
+                <quantaSize>0.0</quantaSize>
+            </quantumSize>
+            <quantumSwitchoverTime>
+                <quantumSwitchoverTime>0.0</quantumSwitchoverTime>
+            </quantumSwitchoverTime>
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="PSServer">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>1</value>
+                </parameter>
+                <parameter classPath="java.lang.Integer" name="maxRunning">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>5.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>100.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.Boolean" name="PSPriorityUsed">
+                    <value>false</value>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.PSStrategy" name="PSStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Double" name="serviceWeights">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="classParallelism">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="serverNames">
+                    <subParameter classPath="java.lang.String" name="serverTypesNames">
+                        <value>Storage - Server Type 1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="serversPerServerType">
+                    <subParameter classPath="java.lang.Integer" name="serverTypesNumOfServers">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Object" name="serverCompatibilities">
+                    <subParameter array="true" classPath="java.lang.Boolean" name="serverTypesCompatibilities">
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.String" name="schedulingPolicy">
+                    <value>ALIS (Assign Longest Idle Server)</value>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>I/O</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Network</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>I/O</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Network</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Network">
+            <classSoftDeadlines>
+                <softDeadline>0.0</softDeadline>
+                <softDeadline>0.0</softDeadline>
+            </classSoftDeadlines>
+            <quantumSize>
+                <quantaSize>0.0</quantaSize>
+            </quantumSize>
+            <quantumSwitchoverTime>
+                <quantumSwitchoverTime>0.0</quantumSwitchoverTime>
+            </quantumSwitchoverTime>
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="PSServer">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>1</value>
+                </parameter>
+                <parameter classPath="java.lang.Integer" name="maxRunning">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>200.0</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.Exponential" name="Exponential"/>
+                        <subParameter classPath="jmt.engine.random.ExponentialPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="lambda">
+                                <value>8.333333333333334</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.Boolean" name="PSPriorityUsed">
+                    <value>false</value>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.PSStrategy" name="PSStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.PSStrategies.EPSStrategy" name="EPSStrategy"/>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Double" name="serviceWeights">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Double" name="serviceWeight">
+                        <value>1.0</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="classParallelism">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="serverNames">
+                    <subParameter classPath="java.lang.String" name="serverTypesNames">
+                        <value>Network - Server Type 1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="serversPerServerType">
+                    <subParameter classPath="java.lang.Integer" name="serverTypesNumOfServers">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Object" name="serverCompatibilities">
+                    <subParameter array="true" classPath="java.lang.Boolean" name="serverTypesCompatibilities">
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.String" name="schedulingPolicy">
+                    <value>ALIS (Assign Longest Idle Server)</value>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>High Perfomance Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Energy Efficient Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>High Perfomance Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.9</value>
+                                </subParameter>
+                            </subParameter>
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Energy Efficient Cores</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>0.1</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="High Perfomance Cores">
+            <classSoftDeadlines>
+                <softDeadline>0.0</softDeadline>
+                <softDeadline>0.0</softDeadline>
+            </classSoftDeadlines>
+            <quantumSize>
+                <quantaSize>0.0</quantaSize>
+            </quantumSize>
+            <quantumSwitchoverTime>
+                <quantumSwitchoverTime>0.0</quantumSwitchoverTime>
+            </quantumSwitchoverTime>
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>8</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.GammaDistr" name="Gamma"/>
+                        <subParameter classPath="jmt.engine.random.GammaDistrPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="alpha">
+                                <value>0.4698543375499589</value>
+                            </subParameter>
+                            <subParameter classPath="java.lang.Double" name="beta">
+                                <value>51.346785741729526</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.GammaDistr" name="Gamma"/>
+                        <subParameter classPath="jmt.engine.random.GammaDistrPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="alpha">
+                                <value>12.016239649884074</value>
+                            </subParameter>
+                            <subParameter classPath="java.lang.Double" name="beta">
+                                <value>0.12503886771386882</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="classParallelism">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="serverNames">
+                    <subParameter classPath="java.lang.String" name="serverTypesNames">
+                        <value>High Perfomance Cores - Server Type 1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="serversPerServerType">
+                    <subParameter classPath="java.lang.Integer" name="serverTypesNumOfServers">
+                        <value>8</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Object" name="serverCompatibilities">
+                    <subParameter array="true" classPath="java.lang.Boolean" name="serverTypesCompatibilities">
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.String" name="schedulingPolicy">
+                    <value>ALIS (Assign Longest Idle Server)</value>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Storage</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Storage</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <node name="Energy Efficient Cores">
+            <classSoftDeadlines>
+                <softDeadline>0.0</softDeadline>
+                <softDeadline>0.0</softDeadline>
+            </classSoftDeadlines>
+            <quantumSize>
+                <quantaSize>0.0</quantaSize>
+            </quantumSize>
+            <quantumSwitchoverTime>
+                <quantumSwitchoverTime>0.0</quantumSwitchoverTime>
+            </quantumSwitchoverTime>
+            <section className="Queue">
+                <parameter classPath="java.lang.Integer" name="size">
+                    <value>-1</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="dropStrategies">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.String" name="dropStrategy">
+                        <value>drop</value>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="jmt.engine.NetStrategies.QueueGetStrategies.FCFSstrategy" name="FCFSstrategy"/>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.QueuePutStrategy" name="QueuePutStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.QueuePutStrategies.TailStrategy" name="TailStrategy"/>
+                </parameter>
+            </section>
+            <section className="Server">
+                <parameter classPath="java.lang.Integer" name="maxJobs">
+                    <value>4</value>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="numberOfVisits">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="numberOfVisits">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="jmt.engine.NetStrategies.ServiceStrategy" name="ServiceStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.GammaDistr" name="Gamma"/>
+                        <subParameter classPath="jmt.engine.random.GammaDistrPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="alpha">
+                                <value>0.46383793175216514</value>
+                            </subParameter>
+                            <subParameter classPath="java.lang.Double" name="beta">
+                                <value>208.17730373028996</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.ServiceStrategies.ServiceTimeStrategy" name="ServiceTimeStrategy">
+                        <subParameter classPath="jmt.engine.random.GammaDistr" name="Gamma"/>
+                        <subParameter classPath="jmt.engine.random.GammaDistrPar" name="distrPar">
+                            <subParameter classPath="java.lang.Double" name="alpha">
+                                <value>12.069482662464479</value>
+                            </subParameter>
+                            <subParameter classPath="java.lang.Double" name="beta">
+                                <value>0.398039512906433</value>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="classParallelism">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="java.lang.Integer" name="serverParallelism">
+                        <value>1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.String" name="serverNames">
+                    <subParameter classPath="java.lang.String" name="serverTypesNames">
+                        <value>Energy Efficient Cores - Server Type 1</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Integer" name="serversPerServerType">
+                    <subParameter classPath="java.lang.Integer" name="serverTypesNumOfServers">
+                        <value>4</value>
+                    </subParameter>
+                </parameter>
+                <parameter array="true" classPath="java.lang.Object" name="serverCompatibilities">
+                    <subParameter array="true" classPath="java.lang.Boolean" name="serverTypesCompatibilities">
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                        <subParameter classPath="java.lang.Boolean" name="compatibilities">
+                            <value>true</value>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+                <parameter classPath="java.lang.String" name="schedulingPolicy">
+                    <value>ALIS (Assign Longest Idle Server)</value>
+                </parameter>
+            </section>
+            <section className="Router">
+                <parameter array="true" classPath="jmt.engine.NetStrategies.RoutingStrategy" name="RoutingStrategy">
+                    <refClass>Heavy computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Storage</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                    <refClass>Low computation tasks</refClass>
+                    <subParameter classPath="jmt.engine.NetStrategies.RoutingStrategies.EmpiricalStrategy" name="Probabilities">
+                        <subParameter array="true" classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntryArray">
+                            <subParameter classPath="jmt.engine.random.EmpiricalEntry" name="EmpiricalEntry">
+                                <subParameter classPath="java.lang.String" name="stationName">
+                                    <value>Storage</value>
+                                </subParameter>
+                                <subParameter classPath="java.lang.Double" name="probability">
+                                    <value>1.0</value>
+                                </subParameter>
+                            </subParameter>
+                        </subParameter>
+                    </subParameter>
+                </parameter>
+            </section>
+        </node>
+        <measure alpha="0.01" name="Heavy computation tasks_System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Heavy computation tasks" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Low computation tasks_System Throughput" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Low computation tasks" type="System Throughput" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Heavy computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Heavy computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Network_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Heavy computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Heavy computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Heavy computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Low computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Low computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Network_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Low computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Low computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Low computation tasks" type="Throughput" verbose="false"/>
+        <measure alpha="0.01" name="Heavy computation tasks_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Heavy computation tasks" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Low computation tasks_System Response Time" nodeType="" precision="0.03" referenceNode="" referenceUserClass="Low computation tasks" type="System Response Time" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Heavy computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Heavy computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Network_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Heavy computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Heavy computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Heavy computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Low computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Low computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Low computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Low computation tasks" type="Utilization" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Heavy computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Heavy computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Network_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Heavy computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Heavy computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Heavy computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Low computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Low computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Network_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Low computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Low computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Low computation tasks" type="Number of Customers" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Heavy computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Heavy computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Network_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Heavy computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Heavy computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Heavy computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Low computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Low computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Network_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Low computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Low computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Low computation tasks" type="Residence Time" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Heavy computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Heavy computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Network_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Heavy computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Heavy computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Heavy computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="I/O_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="I/O" referenceUserClass="Low computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Storage_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Storage" referenceUserClass="Low computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Network_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Low computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="High Perfomance Cores_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="High Perfomance Cores" referenceUserClass="Low computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Energy Efficient Cores_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceNode="Energy Efficient Cores" referenceUserClass="Low computation tasks" type="Response Time" verbose="false"/>
+        <measure alpha="0.01" name="Network_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceNode="Network" referenceUserClass="Low computation tasks" type="Utilization" verbose="false"/>
+        <connection source="I/O" target="High Perfomance Cores"/>
+        <connection source="I/O" target="Energy Efficient Cores"/>
+        <connection source="Storage" target="I/O"/>
+        <connection source="Storage" target="Network"/>
+        <connection source="Network" target="High Perfomance Cores"/>
+        <connection source="Network" target="Energy Efficient Cores"/>
+        <connection source="High Perfomance Cores" target="Storage"/>
+        <connection source="Energy Efficient Cores" target="Storage"/>
+        <preload>
+            <stationPopulations stationName="High Perfomance Cores">
+                <classPopulation population="20" refClass="Heavy computation tasks"/>
+            </stationPopulations>
+            <stationPopulations stationName="Energy Efficient Cores">
+                <classPopulation population="32" refClass="Low computation tasks"/>
+            </stationPopulations>
+        </preload>
+    </sim>
+    <jmodel xsi:noNamespaceSchemaLocation="JModelGUI.xsd">
+        <userClass color="#FF0000FF" name="Heavy computation tasks"/>
+        <userClass color="#FFFF0000" name="Low computation tasks"/>
+        <station name="I/O">
+            <position angle="0.0" rotate="false" x="437.0" y="102.0"/>
+        </station>
+        <station name="Storage">
+            <position angle="0.0" rotate="false" x="781.0" y="207.0"/>
+        </station>
+        <station name="Network">
+            <position angle="0.0" rotate="false" x="437.0" y="198.0"/>
+        </station>
+        <station name="High Perfomance Cores">
+            <position angle="0.0" rotate="false" x="596.0" y="105.0"/>
+        </station>
+        <station name="Energy Efficient Cores">
+            <position angle="0.0" rotate="false" x="582.0" y="196.0"/>
+        </station>
+    </jmodel>
+    <results elapsedTime="44356" logDecimalSeparator="," logDelimiter=";" pollingInterval="1.0" xsi:noNamespaceSchemaLocation="Results.xsd">
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="215" finalValue="0.3071366832596451" name="Heavy computation tasks_System Throughput" nodeType="" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="" state="1" type="16">
+            <sample lastIntervalAvgValue="0.3008945764814881" lowerBound="0.2835953660019126" meanValue="0.2987860209579345" simulationTime="84807.1118409472" upperBound="0.31569613901200505"/>
+            <sample lastIntervalAvgValue="0.31129891617177985" lowerBound="0.3001876443148268" meanValue="0.3071366832596451" simulationTime="167997.25049761252" upperBound="0.3144150727154281"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="143360" discardedSamples="530" finalValue="0.8535991516983796" name="Low computation tasks_System Throughput" nodeType="" precision="0.03" referenceClass="Low computation tasks" referenceStation="" state="1" type="16">
+            <sample lastIntervalAvgValue="0.8421199058121319" lowerBound="0.8038512912073164" meanValue="0.8370566318487853" simulationTime="84807.4003560398" upperBound="0.8731234542025929"/>
+            <sample lastIntervalAvgValue="0.8579002200934311" lowerBound="0.8379025256152842" meanValue="0.8535991516983796" simulationTime="169283.42484302187" upperBound="0.8698951022828747"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="170" finalValue="0.030427717934961306" name="I/O_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="I/O" state="1" type="5">
+            <sample lastIntervalAvgValue="0.029691672843732638" lowerBound="0.024016077293129746" meanValue="0.02971947178099088" simulationTime="84771.24253816814" upperBound="0.03897545427903763"/>
+            <sample lastIntervalAvgValue="0.030068351064567317" lowerBound="0.026562855721280983" meanValue="0.030430494523009086" simulationTime="302541.74767624977" upperBound="0.03561635204488922"/>
+            <sample lastIntervalAvgValue="0.030515955544602274" lowerBound="0.028640792966639343" meanValue="0.030076358047560817" simulationTime="554672.1451253616" upperBound="0.03166342688432056"/>
+            <sample lastIntervalAvgValue="0.0304563678711111" lowerBound="0.029644522332113024" meanValue="0.030579033601623288" simulationTime="817704.1663401666" upperBound="0.03157438158143209"/>
+            <sample lastIntervalAvgValue="0.0307700189412657" lowerBound="0.029644522332113024" meanValue="0.030579033601623288" simulationTime="1079842.4515130327" upperBound="0.03157438158143209"/>
+            <sample lastIntervalAvgValue="0.03007344662042689" lowerBound="0.029644522332113024" meanValue="0.030579033601623288" simulationTime="1341535.1034837726" upperBound="0.03157438158143209"/>
+            <sample lastIntervalAvgValue="0.031775601687817616" lowerBound="0.029830903994606424" meanValue="0.030427717934961306" simulationTime="1354878.674572233" upperBound="0.03104889978817005"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="215" finalValue="0.3045813998752989" name="Storage_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Storage" state="1" type="5">
+            <sample lastIntervalAvgValue="0.3008933805349137" lowerBound="0.2861748254624118" meanValue="0.3001953533180546" simulationTime="84807.44891973141" upperBound="0.3156604675945584"/>
+            <sample lastIntervalAvgValue="0.3093673495920763" lowerBound="0.2970549377897133" meanValue="0.3045813998752989" simulationTime="135417.18527570082" upperBound="0.31249917152992074"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="0" finalValue="0.2755652889637381" name="Network_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Network" state="1" type="5">
+            <sample lastIntervalAvgValue="0.2712142656967309" lowerBound="0.25832061050974414" meanValue="0.27030727591584086" simulationTime="84807.48584854857" upperBound="0.2834604890139113"/>
+            <sample lastIntervalAvgValue="0.27941169970145163" lowerBound="0.26934196921820613" meanValue="0.2755652889637381" simulationTime="149088.97448768263" upperBound="0.28208299839797324"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="10" finalValue="0.27601695350477534" name="High Perfomance Cores_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="High Perfomance Cores" state="1" type="5">
+            <sample lastIntervalAvgValue="0.2708103525556821" lowerBound="0.25648486917490243" meanValue="0.2706525962590176" simulationTime="84808.42694253237" upperBound="0.28647703230724536"/>
+            <sample lastIntervalAvgValue="0.2792426670075874" lowerBound="0.2695638126838953" meanValue="0.27601695350477534" simulationTime="185949.8474233524" upperBound="0.2827866381295175"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="20480" discardedSamples="320" finalValue="0.03078765251909337" name="Energy Efficient Cores_Heavy computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Energy Efficient Cores" state="1" type="5">
+            <sample lastIntervalAvgValue="0.030092701706296195" lowerBound="0.0256481492361871" meanValue="0.029221493022868496" simulationTime="84804.61558112789" upperBound="0.033951701892417516"/>
+            <sample lastIntervalAvgValue="0.03071649214838271" lowerBound="0.027109352097858377" meanValue="0.030564690343868363" simulationTime="302570.36720691016" upperBound="0.03502952849709231"/>
+            <sample lastIntervalAvgValue="0.030745198262943207" lowerBound="0.029454630134334792" meanValue="0.03081155612832281" simulationTime="554674.7749817717" upperBound="0.032299542520979954"/>
+            <sample lastIntervalAvgValue="0.03101001919016193" lowerBound="0.029908487731648916" meanValue="0.03078765251909337" simulationTime="677473.7960545515" upperBound="0.03172006902894057"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="20480" discardedSamples="30" finalValue="0.08539087945730164" name="I/O_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="I/O" state="1" type="5">
+            <sample lastIntervalAvgValue="0.08478755610896617" lowerBound="0.06939341482477689" meanValue="0.08322322196656841" simulationTime="84800.17976647009" upperBound="0.10393751964289795"/>
+            <sample lastIntervalAvgValue="0.08555928537905891" lowerBound="0.08297187967700193" meanValue="0.08539087945730164" simulationTime="240481.70446583536" upperBound="0.08795516417203436"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="143360" discardedSamples="530" finalValue="0.8535991444779407" name="Storage_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Storage" state="1" type="5">
+            <sample lastIntervalAvgValue="0.842119859426781" lowerBound="0.8038493237747265" meanValue="0.8370565958400547" simulationTime="84807.4050273713" upperBound="0.8731256969882228"/>
+            <sample lastIntervalAvgValue="0.8579001617648359" lowerBound="0.8379027720306089" meanValue="0.8535991444779407" simulationTime="169283.43525787466" upperBound="0.8698948216938324"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="143360" discardedSamples="515" finalValue="0.765438925134724" name="Network_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Network" state="1" type="5">
+            <sample lastIntervalAvgValue="0.7573382189395199" lowerBound="0.7186216529646751" meanValue="0.7481980769615248" simulationTime="84807.55149256394" upperBound="0.7803135646356657"/>
+            <sample lastIntervalAvgValue="0.7659038058427563" lowerBound="0.7514884316066676" meanValue="0.765438925134724" simulationTime="188798.41743735585" upperBound="0.7799171644494808"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="102400" discardedSamples="450" finalValue="0.7630780455020605" name="High Perfomance Cores_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="High Perfomance Cores" state="1" type="5">
+            <sample lastIntervalAvgValue="0.7585187109843853" lowerBound="0.7265124997928238" meanValue="0.7549454709345779" simulationTime="84807.4003560398" upperBound="0.7856946075410605"/>
+            <sample lastIntervalAvgValue="0.7646545127696884" lowerBound="0.7444927135490068" meanValue="0.7630780455020605" simulationTime="135185.70762642755" upperBound="0.7826150541360862"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="25600" discardedSamples="80" finalValue="0.08539724711493275" name="Energy Efficient Cores_Low computation tasks_Throughput" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Energy Efficient Cores" state="1" type="5">
+            <sample lastIntervalAvgValue="0.08360323855866222" lowerBound="0.07300332137954663" meanValue="0.08409112914096964" simulationTime="84805.32718867261" upperBound="0.0991501381012562"/>
+            <sample lastIntervalAvgValue="0.0854683234015722" lowerBound="0.08313785552811262" meanValue="0.08539724711493275" simulationTime="302347.91209046065" upperBound="0.08778287379806478"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="46080" discardedSamples="10" finalValue="65.38916833963306" name="Heavy computation tasks_System Response Time" nodeType="" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="" state="1" type="15">
+            <sample lastIntervalAvgValue="66.44169311668492" lowerBound="63.28929096295522" meanValue="66.7239757066651" simulationTime="84807.1118409472" upperBound="70.15866045037498"/>
+            <sample lastIntervalAvgValue="64.44441544056599" lowerBound="63.7926950413365" meanValue="65.38916833963306" simulationTime="151157.63534794966" upperBound="66.98564163792962"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="143360" discardedSamples="20" finalValue="37.47384231103015" name="Low computation tasks_System Response Time" nodeType="" precision="0.03" referenceClass="Low computation tasks" referenceStation="" state="1" type="15">
+            <sample lastIntervalAvgValue="37.99277251833401" lowerBound="36.22062353356794" meanValue="38.34179144706682" simulationTime="84807.4003560398" upperBound="40.4629593605657"/>
+            <sample lastIntervalAvgValue="37.27131246782645" lowerBound="36.72804545520361" meanValue="37.47384231103015" simulationTime="168647.2346805465" upperBound="38.21963916685668"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="286720" discardedSamples="500" finalValue="0.0015224003963075648" name="I/O_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="I/O" state="1" type="6">
+            <sample lastIntervalAvgValue="0.001492524153427183" lowerBound="0.0013152717268302663" meanValue="0.0014896742655378919" simulationTime="84800.17976647009" upperBound="0.0016640768042455174"/>
+            <sample lastIntervalAvgValue="0.0015198556757524764" lowerBound="0.001406037689328097" meanValue="0.0014919799442306239" simulationTime="302555.0917670598" upperBound="0.0015779221991331508"/>
+            <sample lastIntervalAvgValue="0.0015068818031868957" lowerBound="0.0014441445374491757" meanValue="0.0015068513205877849" simulationTime="554691.6709680595" upperBound="0.001569558103726394"/>
+            <sample lastIntervalAvgValue="0.0015373108479492634" lowerBound="0.0014729983273463797" meanValue="0.0015206191602495313" simulationTime="817704.598544602" upperBound="0.0015682399931526828"/>
+            <sample lastIntervalAvgValue="0.0015568825216304898" lowerBound="0.0014729983273463797" meanValue="0.0015206191602495313" simulationTime="1079875.7952960113" upperBound="0.0015682399931526828"/>
+            <sample lastIntervalAvgValue="0.0014700729593213656" lowerBound="0.0014814942544940947" meanValue="0.0015224003963075648" simulationTime="1242380.2733562605" upperBound="0.001563306538121035"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="409600" discardedSamples="770" finalValue="0.06124365257547117" name="Storage_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Storage" state="1" type="6">
+            <sample lastIntervalAvgValue="0.05973383124030044" lowerBound="0.05622783562220284" meanValue="0.059387294045777736" simulationTime="84807.44891973141" upperBound="0.06254675246935264"/>
+            <sample lastIntervalAvgValue="0.06181419191829694" lowerBound="0.059600647990192976" meanValue="0.06124365257547117" simulationTime="177800.7937477105" upperBound="0.06288665716074937"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="409600" discardedSamples="265" finalValue="0.0013834074339934758" name="Network_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Network" state="1" type="6">
+            <sample lastIntervalAvgValue="0.001353206890696356" lowerBound="0.0012961442257983847" meanValue="0.0013605851519954987" simulationTime="84807.55149256394" upperBound="0.0014250260781926128"/>
+            <sample lastIntervalAvgValue="0.0013929871560687257" lowerBound="0.001352036071599264" meanValue="0.0013834074339934758" simulationTime="197427.7311992691" upperBound="0.0014147787963876876"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="46080" discardedSamples="15" finalValue="0.8339344080565249" name="High Perfomance Cores_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="High Perfomance Cores" state="1" type="6">
+            <sample lastIntervalAvgValue="0.8329332601893342" lowerBound="0.8062763245816843" meanValue="0.8459491297317551" simulationTime="84808.42694253237" upperBound="0.8856219348818258"/>
+            <sample lastIntervalAvgValue="0.827114239216728" lowerBound="0.8139130701672729" meanValue="0.8339344080565249" simulationTime="95758.61362610538" upperBound="0.8539557459457768"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="48640" discardedSamples="680" finalValue="0.7376563288095641" name="Energy Efficient Cores_Heavy computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Energy Efficient Cores" state="1" type="6">
+            <sample lastIntervalAvgValue="0.7523955473560403" meanValue="0.7523955473560403" simulationTime="84805.32718867261"/>
+            <sample lastIntervalAvgValue="0.7399754368135325" lowerBound="0.7117527468408285" meanValue="0.7500983323800767" simulationTime="302570.36720691016" upperBound="0.788443917919325"/>
+            <sample lastIntervalAvgValue="0.7277959527268452" lowerBound="0.6941382546131111" meanValue="0.7309586092717711" simulationTime="554687.0335243508" upperBound="0.7677789639304312"/>
+            <sample lastIntervalAvgValue="0.7333204236583736" lowerBound="0.6941382546131111" meanValue="0.7309586092717711" simulationTime="817645.2573536756" upperBound="0.7677789639304312"/>
+            <sample lastIntervalAvgValue="0.7679724732225629" lowerBound="0.720690468674003" meanValue="0.7376563288095641" simulationTime="883918.261926213" upperBound="0.7546221889451252"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="122880" discardedSamples="0" finalValue="0.012782762948198889" name="I/O_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="I/O" state="1" type="6">
+            <sample lastIntervalAvgValue="0.012650141713488702" lowerBound="0.011703430771124944" meanValue="0.012532364240701489" simulationTime="84800.17976647009" upperBound="0.013361297710278034"/>
+            <sample lastIntervalAvgValue="0.0129282053933246" lowerBound="0.012420211106577683" meanValue="0.012906956089861508" simulationTime="302555.0917670598" upperBound="0.013393701073145333"/>
+            <sample lastIntervalAvgValue="0.01272823912836409" lowerBound="0.012447124009161453" meanValue="0.012782762948198889" simulationTime="532747.6544405612" upperBound="0.013118401887236324"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="409600" discardedSamples="325" finalValue="0.008497363059947213" name="Storage_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Storage" state="1" type="6">
+            <sample lastIntervalAvgValue="0.008382005893863656" lowerBound="0.007847133314742901" meanValue="0.008291757706841336" simulationTime="84807.44891973141" upperBound="0.00873638209893977"/>
+            <sample lastIntervalAvgValue="0.008544775152654192" lowerBound="0.008301192570624134" meanValue="0.008497363059947213" simulationTime="177612.1974681439" upperBound="0.008693533549270292"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="184320" discardedSamples="30" finalValue="0.14396800203100837" name="High Perfomance Cores_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="High Perfomance Cores" state="1" type="6">
+            <sample lastIntervalAvgValue="0.1424334893848813" lowerBound="0.13312762135993852" meanValue="0.14104536232264545" simulationTime="84807.4003560398" upperBound="0.14896310328535237"/>
+            <sample lastIntervalAvgValue="0.1441537260069556" lowerBound="0.1407056869021116" meanValue="0.14396800203100837" simulationTime="185992.20076670038" upperBound="0.14723031715990514"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="71680" discardedSamples="55" finalValue="0.10166636033966658" name="Energy Efficient Cores_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Energy Efficient Cores" state="1" type="6">
+            <sample lastIntervalAvgValue="0.10048697003133011" lowerBound="0.09013012183080821" meanValue="0.09945662052110327" simulationTime="84805.32718867261" upperBound="0.10878311921139833"/>
+            <sample lastIntervalAvgValue="0.10262978774369444" lowerBound="0.09868271972103691" meanValue="0.10250689352774461" simulationTime="302570.36720691016" upperBound="0.10633106733445231"/>
+            <sample lastIntervalAvgValue="0.10089658339227932" lowerBound="0.09868271972103691" meanValue="0.10250689352774461" simulationTime="554687.0335243508" upperBound="0.10633106733445231"/>
+            <sample lastIntervalAvgValue="0.10806650859729133" lowerBound="0.09916199893393221" meanValue="0.10166636033966658" simulationTime="572361.3545809622" upperBound="0.10417072174540096"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="81920" discardedSamples="0" finalValue="0.0015451509391169755" name="I/O_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="I/O" state="1" type="0">
+            <sample lastIntervalAvgValue="0.0015163443762256342" lowerBound="9.730910419115002E-4" meanValue="0.001421175339961948" simulationTime="84771.24253816814" upperBound="0.0018692596380123956"/>
+            <sample lastIntervalAvgValue="0.0015438697142308724" lowerBound="0.001393723288020603" meanValue="0.0015207943866061917" simulationTime="302541.74767624977" upperBound="0.0016478654851917805"/>
+            <sample lastIntervalAvgValue="0.0015281121469406724" lowerBound="0.0014359327224657146" meanValue="0.0015262334734847617" simulationTime="554672.1451253616" upperBound="0.0016165342245038088"/>
+            <sample lastIntervalAvgValue="0.001564889130097863" lowerBound="0.0014940959391319087" meanValue="0.0015510141705041406" simulationTime="817704.1663401666" upperBound="0.0016079324018763725"/>
+            <sample lastIntervalAvgValue="0.0015888291820103976" lowerBound="0.0014940959391319087" meanValue="0.0015510141705041406" simulationTime="1079842.4515130327" upperBound="0.0016079324018763725"/>
+            <sample lastIntervalAvgValue="0.0015104165453063052" lowerBound="0.0014940959391319087" meanValue="0.0015510141705041406" simulationTime="1341535.1034837726" upperBound="0.0016079324018763725"/>
+            <sample lastIntervalAvgValue="0.0015092325294193264" lowerBound="0.0015062069233520285" meanValue="0.0015451509391169755" simulationTime="1349494.59894452" upperBound="0.0015840949548819225"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="81920" discardedSamples="115" finalValue="0.06600483363499278" name="Storage_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Storage" state="1" type="0">
+            <sample lastIntervalAvgValue="0.06468541340473571" lowerBound="0.06165409772307581" meanValue="0.06443937402513038" simulationTime="84807.44891973141" upperBound="0.06722465032718494"/>
+            <sample lastIntervalAvgValue="0.0673558836779641" lowerBound="0.0641368207247639" meanValue="0.06600483363499278" simulationTime="134908.0892938169" upperBound="0.06787284654522166"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="163840" discardedSamples="80" finalValue="0.0015449715562635626" name="Network_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Network" state="1" type="0">
+            <sample lastIntervalAvgValue="0.0015014338409894117" lowerBound="0.0014366123035973043" meanValue="0.001499139937327184" simulationTime="84807.48584854857" upperBound="0.0015616675710570637"/>
+            <sample lastIntervalAvgValue="0.001552492573138627" lowerBound="0.0015156746386028003" meanValue="0.0015449715562635626" simulationTime="296796.36259827984" upperBound="0.001574268473924325"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="49470" finalValue="13.96359496294883" name="High Perfomance Cores_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="High Perfomance Cores" state="2" type="0">
+            <sample lastIntervalAvgValue="13.844908973223342" meanValue="13.458931170707402" simulationTime="84808.42694253237"/>
+            <sample lastIntervalAvgValue="13.942377586590784" lowerBound="12.414091467891394" meanValue="13.775878791509438" simulationTime="302570.4228838374" upperBound="15.137666115127482"/>
+            <sample lastIntervalAvgValue="14.359828269683508" lowerBound="13.14759044330482" meanValue="14.105971394497947" simulationTime="554689.977447072" upperBound="15.064352345691075"/>
+            <sample lastIntervalAvgValue="14.008638453131583" lowerBound="13.628682639788924" meanValue="14.21293648048605" simulationTime="817711.5448820039" upperBound="14.797190321183177"/>
+            <sample lastIntervalAvgValue="13.608210838914378" lowerBound="13.628682639788924" meanValue="14.21293648048605" simulationTime="1079897.1141652763" upperBound="14.797190321183177"/>
+            <sample lastIntervalAvgValue="13.257820730573451" lowerBound="13.51950143061208" meanValue="13.96359496294883" simulationTime="1341542.0465183582" upperBound="14.407688495285582"/>
+            <sample lastIntervalAvgValue="13.568078932960045" lowerBound="13.51950143061208" meanValue="13.96359496294883" simulationTime="1611622.735472071" upperBound="14.407688495285582"/>
+            <sample lastIntervalAvgValue="14.168891150753826" lowerBound="13.51950143061208" meanValue="13.96359496294883" simulationTime="1883291.2365875065" upperBound="14.407688495285582"/>
+            <sample lastIntervalAvgValue="15.01663834525697" lowerBound="13.51950143061208" meanValue="13.96359496294883" simulationTime="1905814.0386460144" upperBound="14.407688495285582"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="389120" discardedSamples="19120" finalValue="5.991394098111125" name="Energy Efficient Cores_Heavy computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Energy Efficient Cores" state="1" type="0">
+            <sample lastIntervalAvgValue="6.087401329191167" meanValue="6.087401329191167" simulationTime="84807.48584854857"/>
+            <sample lastIntervalAvgValue="5.988008238210866" meanValue="6.015867140041083" simulationTime="302570.36720691016"/>
+            <sample lastIntervalAvgValue="5.57037024924295" meanValue="5.822145057837953" simulationTime="554674.7749817717"/>
+            <sample lastIntervalAvgValue="5.922261534531276" lowerBound="5.068973152389995" meanValue="5.77117781326268" simulationTime="817684.7346053142" upperBound="6.473382474135366"/>
+            <sample lastIntervalAvgValue="6.321169229852358" lowerBound="5.068973152389995" meanValue="5.77117781326268" simulationTime="1079871.1136864154" upperBound="6.473382474135366"/>
+            <sample lastIntervalAvgValue="6.673936521787778" lowerBound="5.377050226240643" meanValue="5.996949679811128" simulationTime="1341520.2503099076" upperBound="6.6168491333816135"/>
+            <sample lastIntervalAvgValue="6.362658317678394" lowerBound="5.377050226240643" meanValue="5.996949679811128" simulationTime="1611619.6768424748" upperBound="6.6168491333816135"/>
+            <sample lastIntervalAvgValue="5.761236234363394" lowerBound="5.377050226240643" meanValue="5.996949679811128" simulationTime="1883291.290129398" upperBound="6.6168491333816135"/>
+            <sample lastIntervalAvgValue="5.669928683960582" lowerBound="5.7989669029205295" meanValue="6.191257586278114" simulationTime="2156758.329424964" upperBound="6.583548269635699"/>
+            <sample lastIntervalAvgValue="5.44987822361419" lowerBound="5.7989669029205295" meanValue="6.191257586278114" simulationTime="2429063.6532963417" upperBound="6.583548269635699"/>
+            <sample lastIntervalAvgValue="6.277615845076943" lowerBound="5.7989669029205295" meanValue="6.191257586278114" simulationTime="2699977.10928424" upperBound="6.583548269635699"/>
+            <sample lastIntervalAvgValue="5.78813664426893" lowerBound="5.7989669029205295" meanValue="6.191257586278114" simulationTime="2968081.9469755613" upperBound="6.583548269635699"/>
+            <sample lastIntervalAvgValue="6.043876835096205" lowerBound="5.7989669029205295" meanValue="6.191257586278114" simulationTime="3239115.7288407558" upperBound="6.583548269635699"/>
+            <sample lastIntervalAvgValue="5.943822822518239" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="3510220.971563133" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.097369982893251" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="3779311.3407671964" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.057072202777711" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="4052848.787712515" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.462426511098846" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="4325003.48868175" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="5.477486362968301" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="4599843.282743136" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.292082305156345" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="4872720.211817466" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.2486700319636865" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="5143305.681628819" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="5.724818072783235" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="5413677.975222467" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.035679018114391" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="5685569.809021893" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="5.793606829357095" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="5957096.1283662245" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="5.5922350963198575" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="6229487.819746287" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.043530709719091" lowerBound="5.764883099789968" meanValue="5.994052587784748" simulationTime="6500166.143117265" upperBound="6.223222075779528"/>
+            <sample lastIntervalAvgValue="6.101306093585003" lowerBound="5.817471176645417" meanValue="5.991394098111125" simulationTime="6645897.596223125" upperBound="6.165317019576833"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="81920" discardedSamples="50" finalValue="0.012936663687493632" name="I/O_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="I/O" state="1" type="0">
+            <sample lastIntervalAvgValue="0.012804704542584805" lowerBound="0.011411952273070517" meanValue="0.01252201639838034" simulationTime="84800.17976647009" upperBound="0.013632080523690162"/>
+            <sample lastIntervalAvgValue="0.013087043697539191" lowerBound="0.01249576951035113" meanValue="0.013018857781456802" simulationTime="302555.0917670598" upperBound="0.013541946052562474"/>
+            <sample lastIntervalAvgValue="0.012797151131864238" lowerBound="0.01260741296368573" meanValue="0.012936663687493632" simulationTime="482546.24890396197" upperBound="0.013265914411301535"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="245280" discardedSamples="240" finalValue="0.009115925150774954" name="Storage_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Storage" state="1" type="0">
+            <sample lastIntervalAvgValue="0.008998367782706556" lowerBound="0.008556662651687056" meanValue="0.008993770476356935" simulationTime="84807.4050273713" upperBound="0.009430878301026813"/>
+            <sample lastIntervalAvgValue="0.009211546859535014" lowerBound="0.008886460314342495" meanValue="0.009115925150774954" simulationTime="144972.0867605878" upperBound="0.009345389987207412"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="327680" discardedSamples="270" finalValue="0.10025721078284813" name="Network_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Network" state="1" type="0">
+            <sample lastIntervalAvgValue="0.09966742409259664" lowerBound="0.0931792609783442" meanValue="0.09808988995250875" simulationTime="84807.55149256394" upperBound="0.1030005189266733"/>
+            <sample lastIntervalAvgValue="0.10029053291680186" lowerBound="0.09826766777000016" meanValue="0.10025721078284813" simulationTime="215115.05274333275" upperBound="0.1022467537956961"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="49145" finalValue="22.987631077781426" name="High Perfomance Cores_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="High Perfomance Cores" state="2" type="0">
+            <sample lastIntervalAvgValue="22.241236531278382" lowerBound="13.43179031402311" meanValue="19.21734512906199" simulationTime="84807.55149256394" upperBound="25.002899944100868"/>
+            <sample lastIntervalAvgValue="22.389596894322796" lowerBound="19.59174165292647" meanValue="22.16884494495094" simulationTime="302572.89917241636" upperBound="24.745948236975412"/>
+            <sample lastIntervalAvgValue="23.523451109035268" lowerBound="21.39044619427341" meanValue="22.987631077781426" simulationTime="554695.139538888" upperBound="24.584815961289443"/>
+            <sample lastIntervalAvgValue="22.060593539005144" lowerBound="21.39044619427341" meanValue="22.987631077781426" simulationTime="685547.6875995194" upperBound="24.584815961289443"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="11580" finalValue="9.487377289727204" name="Energy Efficient Cores_Low computation tasks_Number of Customers" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Energy Efficient Cores" state="2" type="0">
+            <sample lastIntervalAvgValue="9.637494414498404" meanValue="9.637494414498404" simulationTime="84805.32718867261"/>
+            <sample lastIntervalAvgValue="9.488306318111832" lowerBound="5.772732925378034" meanValue="9.037195094686192" simulationTime="302566.57771575096" upperBound="12.30165726399435"/>
+            <sample lastIntervalAvgValue="8.353911864144623" lowerBound="6.045213322545591" meanValue="8.345032412477506" simulationTime="554693.4367452156" upperBound="10.644851502409422"/>
+            <sample lastIntervalAvgValue="9.144972039416249" lowerBound="7.999111858590749" meanValue="9.13631443498506" simulationTime="817707.6163806218" upperBound="10.27351701137937"/>
+            <sample lastIntervalAvgValue="10.235469197117686" lowerBound="7.999111858590749" meanValue="9.13631443498506" simulationTime="1079875.7952960113" upperBound="10.27351701137937"/>
+            <sample lastIntervalAvgValue="11.013389252548317" lowerBound="8.785126276087075" meanValue="9.668022865551233" simulationTime="1341542.4996288074" upperBound="10.550919455015391"/>
+            <sample lastIntervalAvgValue="10.392881660201493" lowerBound="8.785126276087075" meanValue="9.668022865551233" simulationTime="1611607.21747462" upperBound="10.550919455015391"/>
+            <sample lastIntervalAvgValue="8.804083181491817" lowerBound="8.785126276087075" meanValue="9.668022865551233" simulationTime="1883292.9891310444" upperBound="10.550919455015391"/>
+            <sample lastIntervalAvgValue="8.74626009606868" lowerBound="8.785126276087075" meanValue="9.668022865551233" simulationTime="2156759.6976874373" upperBound="10.550919455015391"/>
+            <sample lastIntervalAvgValue="8.223314388573494" lowerBound="8.785126276087075" meanValue="9.668022865551233" simulationTime="2429080.871692827" upperBound="10.550919455015391"/>
+            <sample lastIntervalAvgValue="10.156757259771528" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="2699984.5188188553" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="9.092658084910308" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="2968086.4844287983" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="9.514862112926584" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="3239117.4577175793" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="9.322888525582997" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="3510232.662992517" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="9.75289038589991" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="3779304.6152198836" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="9.526550870650507" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="4052836.808580865" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="10.607660167642866" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="4324993.834896711" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="8.162821949312427" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="4599844.785273324" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="10.151090687935573" lowerBound="8.713509098900367" meanValue="9.295559597790986" simulationTime="4872751.2852810435" upperBound="9.877610096681604"/>
+            <sample lastIntervalAvgValue="10.091340224928109" lowerBound="9.048617063398716" meanValue="9.487377289727204" simulationTime="5143286.582623266" upperBound="9.926137516055693"/>
+            <sample lastIntervalAvgValue="8.861032936242774" lowerBound="9.048617063398716" meanValue="9.487377289727204" simulationTime="5413681.4181482205" upperBound="9.926137516055693"/>
+            <sample lastIntervalAvgValue="9.487251436700335" lowerBound="9.048617063398716" meanValue="9.487377289727204" simulationTime="5685555.122010947" upperBound="9.926137516055693"/>
+            <sample lastIntervalAvgValue="9.025246954073596" lowerBound="9.048617063398716" meanValue="9.487377289727204" simulationTime="5950109.080850692" upperBound="9.926137516055693"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="675" finalValue="0.005047323175515611" name="I/O_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="I/O" state="1" type="3">
+            <sample lastIntervalAvgValue="0.005040285334604184" meanValue="0.005040285334604184" simulationTime="84771.24253816814"/>
+            <sample lastIntervalAvgValue="0.005030375012511479" lowerBound="0.004714409302001158" meanValue="0.0049402787084892935" simulationTime="302541.74767624977" upperBound="0.005166148114977428"/>
+            <sample lastIntervalAvgValue="0.004935694222412065" lowerBound="0.004754652956518497" meanValue="0.004992291928004265" simulationTime="554672.1451253616" upperBound="0.005229930899490032"/>
+            <sample lastIntervalAvgValue="0.00508596074785411" lowerBound="0.0047749229817566465" meanValue="0.0050135750551435695" simulationTime="817704.1663401666" upperBound="0.005252227128530493"/>
+            <sample lastIntervalAvgValue="0.005132877234529651" lowerBound="0.004886320536738744" meanValue="0.005074806268921941" simulationTime="1079842.4515130327" upperBound="0.005263292001105139"/>
+            <sample lastIntervalAvgValue="0.004986374857269144" lowerBound="0.004880248242426083" meanValue="0.005068499740929572" simulationTime="1341535.1034837726" upperBound="0.005256751239433061"/>
+            <sample lastIntervalAvgValue="0.0049943629407770964" lowerBound="0.004892566660705112" meanValue="0.005081293331901674" simulationTime="1611619.7747046854" upperBound="0.005270020003098236"/>
+            <sample lastIntervalAvgValue="0.0050650654807189305" lowerBound="0.004958145982678975" meanValue="0.005047323175515611" simulationTime="1707293.653336567" upperBound="0.005136500368352247"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="305" finalValue="0.2164850949901718" name="Storage_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Storage" state="1" type="3">
+            <sample lastIntervalAvgValue="0.21497785458005464" lowerBound="0.20796058329006897" meanValue="0.2157797991811842" simulationTime="84807.44891973141" upperBound="0.22359901507229943"/>
+            <sample lastIntervalAvgValue="0.21782219414122364" lowerBound="0.21257668957052536" meanValue="0.2164850949901718" simulationTime="135735.4258459882" upperBound="0.22039350040981823"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="125" finalValue="0.0050193987860288995" name="Network_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Network" state="1" type="3">
+            <sample lastIntervalAvgValue="0.0049899219853531416" lowerBound="0.00479773895030711" meanValue="0.0050020702589618285" simulationTime="84807.48584854857" upperBound="0.005206401567616547"/>
+            <sample lastIntervalAvgValue="0.005041150947393128" lowerBound="0.004910456570049703" meanValue="0.0050193987860288995" simulationTime="149592.07067262862" upperBound="0.005128341002008095"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="348160" discardedSamples="19835" finalValue="45.019027382793325" name="High Perfomance Cores_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="High Perfomance Cores" state="1" type="3">
+            <sample lastIntervalAvgValue="46.02606246270856" meanValue="46.02606246270856" simulationTime="84808.42694253237"/>
+            <sample lastIntervalAvgValue="45.308550331596116" lowerBound="41.82679374197702" meanValue="45.54238188728864" simulationTime="302567.077373903" upperBound="49.25797003260026"/>
+            <sample lastIntervalAvgValue="46.72587555901529" lowerBound="43.51153499381351" meanValue="46.52397744126371" simulationTime="554689.8683041447" upperBound="49.53641988871391"/>
+            <sample lastIntervalAvgValue="45.97601930221812" lowerBound="44.381777813770896" meanValue="45.902059339498514" simulationTime="817711.5448820039" upperBound="47.422340865226126"/>
+            <sample lastIntervalAvgValue="44.51356185176468" lowerBound="44.390530726385315" meanValue="45.91111207992514" simulationTime="1079897.064200962" upperBound="47.43169343346497"/>
+            <sample lastIntervalAvgValue="43.854537677251706" lowerBound="43.69464696622534" meanValue="45.019027382793325" simulationTime="1338019.5322215334" upperBound="46.34340779936131"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="266240" discardedSamples="2080" finalValue="19.371237633517207" name="Energy Efficient Cores_Heavy computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Energy Efficient Cores" state="1" type="3">
+            <sample lastIntervalAvgValue="20.255978037240425" meanValue="20.255978037240425" simulationTime="84804.61558112789"/>
+            <sample lastIntervalAvgValue="19.46851346767913" meanValue="19.67100237392326" simulationTime="302570.36720691016"/>
+            <sample lastIntervalAvgValue="18.116510925182123" lowerBound="15.068792593553503" meanValue="18.690644495657725" simulationTime="554674.7749817717" upperBound="22.312496397761947"/>
+            <sample lastIntervalAvgValue="19.281784351502623" lowerBound="16.729117478904485" meanValue="18.60828273836998" simulationTime="817645.2573536756" upperBound="20.487447997835474"/>
+            <sample lastIntervalAvgValue="20.818280792286075" lowerBound="16.69419182337205" meanValue="18.5694339184134" simulationTime="1079772.0171381831" upperBound="20.444676013454746"/>
+            <sample lastIntervalAvgValue="21.596501373229017" lowerBound="18.31432757309242" meanValue="19.66215975328167" simulationTime="1341520.2503099076" upperBound="21.00999193347092"/>
+            <sample lastIntervalAvgValue="20.85621856671903" lowerBound="18.309526446893408" meanValue="19.657005291020152" simulationTime="1611590.0350814834" upperBound="21.004484135146892"/>
+            <sample lastIntervalAvgValue="18.878885361784832" lowerBound="18.281715286177548" meanValue="19.627147384267253" simulationTime="1883276.9430089893" upperBound="20.972579482356956"/>
+            <sample lastIntervalAvgValue="18.820399952297322" lowerBound="18.237742846700794" meanValue="19.579938818935933" simulationTime="2156758.329424964" upperBound="20.922134791171075"/>
+            <sample lastIntervalAvgValue="17.88310983956348" lowerBound="18.754369704279245" meanValue="19.697968253163843" simulationTime="2429062.6935588196" upperBound="20.641566802048438"/>
+            <sample lastIntervalAvgValue="20.228331323338647" lowerBound="18.782391608575253" meanValue="19.727400038391472" simulationTime="2699963.058362388" upperBound="20.672408468207692"/>
+            <sample lastIntervalAvgValue="18.5048963989742" lowerBound="18.795262231483612" meanValue="19.74091822777586" simulationTime="2968081.9469755613" upperBound="20.686574224068114"/>
+            <sample lastIntervalAvgValue="19.542536803311137" lowerBound="18.81228277297909" meanValue="19.75879513280206" simulationTime="3239112.5673024766" upperBound="20.70530749262503"/>
+            <sample lastIntervalAvgValue="19.27787280584591" lowerBound="18.819968280603042" meanValue="19.766867325446928" simulationTime="3510220.971563133" upperBound="20.713766370290816"/>
+            <sample lastIntervalAvgValue="19.62438788863738" lowerBound="18.826500513229714" meanValue="19.773728217757967" simulationTime="3779311.174079753" upperBound="20.720955922286223"/>
+            <sample lastIntervalAvgValue="19.682446919778123" lowerBound="18.843915303602717" meanValue="19.792019207714546" simulationTime="4052848.787712515" upperBound="20.740123111826374"/>
+            <sample lastIntervalAvgValue="21.24077685538084" lowerBound="18.837564112863767" meanValue="19.785348466147738" simulationTime="4325003.48868175" upperBound="20.733132819431706"/>
+            <sample lastIntervalAvgValue="18.180960555526944" lowerBound="18.93117552992887" meanValue="19.64511427051862" simulationTime="4599808.177404801" upperBound="20.359053011108372"/>
+            <sample lastIntervalAvgValue="20.730914884447486" lowerBound="18.926718200239467" meanValue="19.64048884454065" simulationTime="4872670.090191132" upperBound="20.354259488841834"/>
+            <sample lastIntervalAvgValue="20.43018172284258" lowerBound="18.92349050222318" meanValue="19.63713942251134" simulationTime="5143291.510076206" upperBound="20.350788342799497"/>
+            <sample lastIntervalAvgValue="18.721636153930874" lowerBound="18.918078990760364" meanValue="19.631523830341948" simulationTime="5413675.391468222" upperBound="20.344968669923528"/>
+            <sample lastIntervalAvgValue="19.47753776355878" lowerBound="18.929445967791597" meanValue="19.643319482563115" simulationTime="5685506.546937439" upperBound="20.357192997334632"/>
+            <sample lastIntervalAvgValue="18.730755585323738" lowerBound="18.939119063215877" meanValue="19.653357372955035" simulationTime="5957096.1283662245" upperBound="20.367595682694194"/>
+            <sample lastIntervalAvgValue="18.70165715375295" lowerBound="18.91467900054663" meanValue="19.627995618574968" simulationTime="6229479.500328698" upperBound="20.341312236603308"/>
+            <sample lastIntervalAvgValue="19.681470794360052" lowerBound="18.907090468429733" meanValue="19.620120905229975" simulationTime="6500097.250972501" upperBound="20.333151342030217"/>
+            <sample lastIntervalAvgValue="19.060436981601327" lowerBound="18.904406682915884" meanValue="19.61733590791093" simulationTime="6771872.6630163435" upperBound="20.330265132905982"/>
+            <sample lastIntervalAvgValue="19.314280251498197" lowerBound="18.90481467488814" meanValue="19.617759286211125" simulationTime="7044747.600105438" upperBound="20.330703897534107"/>
+            <sample lastIntervalAvgValue="20.562949473931948" lowerBound="18.916077268626026" meanValue="19.62944661860173" simulationTime="7315105.873933098" upperBound="20.342815968577433"/>
+            <sample lastIntervalAvgValue="18.379963194522297" lowerBound="18.915177084901696" meanValue="19.628512486851648" simulationTime="7588735.682484758" upperBound="20.341847888801595"/>
+            <sample lastIntervalAvgValue="18.817548881258617" lowerBound="18.90932925847648" meanValue="19.622444125265968" simulationTime="7860506.318712934" upperBound="20.335558992055454"/>
+            <sample lastIntervalAvgValue="18.442813331247553" lowerBound="18.903034264535943" meanValue="19.61591173243603" simulationTime="8130803.319661488" upperBound="20.32878920033611"/>
+            <sample lastIntervalAvgValue="19.288062929131232" lowerBound="18.88878686367779" meanValue="19.601127028893774" simulationTime="8402621.672056722" upperBound="20.313467194109762"/>
+            <sample lastIntervalAvgValue="20.101424258833795" lowerBound="18.895183729456654" meanValue="19.607765135386437" simulationTime="8672744.64878581" upperBound="20.320346541316223"/>
+            <sample lastIntervalAvgValue="19.939658101684813" lowerBound="18.9602253997893" meanValue="19.371237633517207" simulationTime="8741591.70324461" upperBound="19.782249867245117"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="33280" discardedSamples="980" finalValue="0.015240978236717195" name="I/O_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="I/O" state="1" type="3">
+            <sample lastIntervalAvgValue="0.015205518016380214" lowerBound="0.012765497164138682" meanValue="0.01486285841397695" simulationTime="84800.17976647009" upperBound="0.01696021966381522"/>
+            <sample lastIntervalAvgValue="0.01539088697450576" lowerBound="0.014494631082436954" meanValue="0.01522867641713042" simulationTime="302555.0917670598" upperBound="0.015962721751823887"/>
+            <sample lastIntervalAvgValue="0.015159601346225175" lowerBound="0.01490813102654126" meanValue="0.015240978236717195" simulationTime="402643.4200372294" upperBound="0.015573825446893128"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="56320" discardedSamples="0" finalValue="0.010715892033095805" name="Storage_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Storage" state="1" type="3">
+            <sample lastIntervalAvgValue="0.010717436663981582" lowerBound="0.01055175632076872" meanValue="0.010715892033095805" simulationTime="67168.92155481211" upperBound="0.01088002774542289"/>
+            <sample lastIntervalAvgValue="0.010717436663981582" lowerBound="0.01055175632076872" meanValue="0.010715892033095805" simulationTime="67168.92155481211" upperBound="0.01088002774542289"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="35840" discardedSamples="135" finalValue="0.11839634049515502" name="Network_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Network" state="1" type="3">
+            <sample lastIntervalAvgValue="0.11844382250164676" lowerBound="0.11669071509285095" meanValue="0.11839634049515502" simulationTime="48288.77519664228" upperBound="0.12010196589745907"/>
+            <sample lastIntervalAvgValue="0.11844382250164676" lowerBound="0.11669071509285095" meanValue="0.11839634049515502" simulationTime="48288.77519664228" upperBound="0.12010196589745907"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="77430" finalValue="26.828297498608798" name="High Perfomance Cores_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="High Perfomance Cores" state="2" type="3">
+            <sample lastIntervalAvgValue="26.417307761156422" meanValue="23.73884963287817" simulationTime="84807.4003560398"/>
+            <sample lastIntervalAvgValue="26.32982396708367" lowerBound="22.63709777745551" meanValue="26.247747985824358" simulationTime="302572.89917241636" upperBound="29.858398194193207"/>
+            <sample lastIntervalAvgValue="27.531068212490755" lowerBound="24.974345258090565" meanValue="27.31448350292167" simulationTime="554695.1069570645" upperBound="29.654621747752785"/>
+            <sample lastIntervalAvgValue="26.833003857958794" lowerBound="25.293700455589796" meanValue="26.828966784766063" simulationTime="817709.9013746558" upperBound="28.36423311394233"/>
+            <sample lastIntervalAvgValue="25.44071995071308" lowerBound="25.29581158191512" meanValue="26.831206051343923" simulationTime="1079899.4512551485" upperBound="28.366600520772725"/>
+            <sample lastIntervalAvgValue="24.39722764215798" lowerBound="25.294674971244277" meanValue="26.830000451159446" simulationTime="1341541.7605070812" upperBound="28.36532593107462"/>
+            <sample lastIntervalAvgValue="26.014792805924248" lowerBound="25.293069468801644" meanValue="26.828297498608798" simulationTime="1406163.057067627" upperBound="28.36352552841595"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="5805" finalValue="10.945137341967875" name="Energy Efficient Cores_Low computation tasks_Residence Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Energy Efficient Cores" state="2" type="3">
+            <sample lastIntervalAvgValue="11.447274335498072" meanValue="11.447274335498072" simulationTime="84805.32718867261"/>
+            <sample lastIntervalAvgValue="11.11628047845825" meanValue="11.342548225639685" simulationTime="302566.03032173234"/>
+            <sample lastIntervalAvgValue="9.862639631681626" lowerBound="7.357583221186151" meanValue="10.418120485286071" simulationTime="554687.0335243508" upperBound="13.47865774938599"/>
+            <sample lastIntervalAvgValue="10.758855204105728" lowerBound="8.60020445990613" meanValue="10.086260349297053" simulationTime="817707.6163806218" upperBound="11.572316238687975"/>
+            <sample lastIntervalAvgValue="12.065459399221726" lowerBound="8.592639528572542" meanValue="10.077388250114893" simulationTime="1079776.8859409983" upperBound="11.562136971657246"/>
+            <sample lastIntervalAvgValue="12.861541120619632" lowerBound="9.862305081404111" meanValue="11.085168249560645" simulationTime="1341542.4996288074" upperBound="12.308031417717178"/>
+            <sample lastIntervalAvgValue="12.195870221325613" lowerBound="9.866518166913893" meanValue="11.08990373090504" simulationTime="1611607.21747462" upperBound="12.313289294896187"/>
+            <sample lastIntervalAvgValue="10.41379277530306" lowerBound="9.854440293153804" meanValue="11.076328277537652" simulationTime="1883292.9891310444" upperBound="12.298216261921501"/>
+            <sample lastIntervalAvgValue="10.328184754986939" lowerBound="10.565859513194168" meanValue="11.350371003158957" simulationTime="2156741.712218952" upperBound="12.134882493123744"/>
+            <sample lastIntervalAvgValue="9.63047977768706" lowerBound="10.57509625719831" meanValue="11.360293572276715" simulationTime="2429080.871692827" upperBound="12.145490887355122"/>
+            <sample lastIntervalAvgValue="11.7555625689673" lowerBound="10.58999925343637" meanValue="11.376303110937478" simulationTime="2699984.5188188553" upperBound="12.162606968438586"/>
+            <sample lastIntervalAvgValue="10.50627704897002" lowerBound="10.594249822849292" meanValue="11.380869283689549" simulationTime="2968086.4844287983" upperBound="12.167488744529805"/>
+            <sample lastIntervalAvgValue="11.099111029301005" lowerBound="10.601360516039309" meanValue="11.388507943440375" simulationTime="3239117.4577175793" upperBound="12.175655370841442"/>
+            <sample lastIntervalAvgValue="10.821517192473012" lowerBound="10.611230419633754" meanValue="11.399110684033554" simulationTime="3510232.662992517" upperBound="12.186990948433355"/>
+            <sample lastIntervalAvgValue="11.34274519530222" lowerBound="10.613674960450647" meanValue="11.40173673117808" simulationTime="3779284.38487871" upperBound="12.189798501905514"/>
+            <sample lastIntervalAvgValue="11.188156017028147" lowerBound="10.617433035691425" meanValue="11.405773842232543" simulationTime="4052836.808580865" upperBound="12.194114648773661"/>
+            <sample lastIntervalAvgValue="12.508013403730796" lowerBound="10.41962967929915" meanValue="11.06832828083597" simulationTime="4324993.374576702" upperBound="11.71702688237279"/>
+            <sample lastIntervalAvgValue="9.771805468209093" lowerBound="10.417943317746403" meanValue="11.066536930870523" simulationTime="4599839.936618638" upperBound="11.715130543994643"/>
+            <sample lastIntervalAvgValue="12.094263617164076" lowerBound="10.410964508283401" meanValue="11.059123639177502" simulationTime="4872664.024904296" upperBound="11.707282770071602"/>
+            <sample lastIntervalAvgValue="11.85483571839098" lowerBound="10.408637335722343" meanValue="11.056651583004227" simulationTime="5143286.582623266" upperBound="11.704665830286112"/>
+            <sample lastIntervalAvgValue="10.391296824447561" lowerBound="10.409303547675803" meanValue="11.057359271552906" simulationTime="5413681.403320206" upperBound="11.70541499543001"/>
+            <sample lastIntervalAvgValue="11.167438591547334" lowerBound="10.407147494637357" meanValue="11.0550689883514" simulationTime="5685555.122010947" upperBound="11.702990482065442"/>
+            <sample lastIntervalAvgValue="10.44322983246442" lowerBound="10.405566255876975" meanValue="11.0533893058455" simulationTime="5957112.482277969" upperBound="11.701212355814022"/>
+            <sample lastIntervalAvgValue="9.999242558376592" lowerBound="10.406998107638389" meanValue="11.054910300912752" simulationTime="6229491.937228813" upperBound="11.702822494187114"/>
+            <sample lastIntervalAvgValue="11.230866063996181" lowerBound="10.409533740655935" meanValue="11.05760379573951" simulationTime="6500111.036823534" upperBound="11.705673850823084"/>
+            <sample lastIntervalAvgValue="10.777860762516697" lowerBound="10.409827192547983" meanValue="11.057915517170672" simulationTime="6771882.224273947" upperBound="11.706003841793363"/>
+            <sample lastIntervalAvgValue="10.880101375147245" lowerBound="10.411975637371967" meanValue="11.060197718490395" simulationTime="7044774.904188404" upperBound="11.708419799608823"/>
+            <sample lastIntervalAvgValue="12.004780854119193" lowerBound="10.411044489045898" meanValue="11.059208599330857" simulationTime="7315115.06167199" upperBound="11.707372709615816"/>
+            <sample lastIntervalAvgValue="9.99085531601192" lowerBound="10.40882435574561" meanValue="11.05685024639979" simulationTime="7588762.405039593" upperBound="11.704876137053972"/>
+            <sample lastIntervalAvgValue="10.185293557430823" lowerBound="10.410200837159907" meanValue="11.058312423908479" simulationTime="7860506.842727098" upperBound="11.706424010657049"/>
+            <sample lastIntervalAvgValue="9.90700705669387" lowerBound="10.40831523812629" meanValue="11.056309432463246" simulationTime="8130808.260361121" upperBound="11.704303626800204"/>
+            <sample lastIntervalAvgValue="10.697357671956867" lowerBound="10.497608563478382" meanValue="10.945172272362269" simulationTime="8402639.55868308" upperBound="11.392735981246156"/>
+            <sample lastIntervalAvgValue="11.586512442535698" lowerBound="10.495270158705921" meanValue="10.942734170110473" simulationTime="8672750.91581483" upperBound="11.390198181515025"/>
+            <sample lastIntervalAvgValue="11.871781650719415" lowerBound="10.495079773448337" meanValue="10.942535667810661" simulationTime="8943929.941388622" upperBound="11.389991562172986"/>
+            <sample lastIntervalAvgValue="9.90510396984667" lowerBound="10.496968130843431" meanValue="10.944504534993706" simulationTime="9215566.63979892" upperBound="11.392040939143982"/>
+            <sample lastIntervalAvgValue="12.536691195280886" lowerBound="10.498237561492212" meanValue="10.945828087596636" simulationTime="9486314.864031846" upperBound="11.39341861370106"/>
+            <sample lastIntervalAvgValue="10.729392797360731" lowerBound="10.498539924542689" meanValue="10.946143341842996" simulationTime="9758669.299096422" upperBound="11.393746759143303"/>
+            <sample lastIntervalAvgValue="10.50414796937274" lowerBound="10.496606569889426" meanValue="10.944127558951534" simulationTime="1.0028320681589533E7" upperBound="11.391648548013642"/>
+            <sample lastIntervalAvgValue="10.738158935018891" lowerBound="10.495599512469418" meanValue="10.943077565814193" simulationTime="1.0299943366133207E7" upperBound="11.390555619158967"/>
+            <sample lastIntervalAvgValue="10.422169891668483" lowerBound="10.492671161019713" meanValue="10.940024364611535" simulationTime="1.057394884191997E7" upperBound="11.387377568203357"/>
+            <sample lastIntervalAvgValue="10.475121930834074" lowerBound="10.490371481946088" meanValue="10.937626639121985" simulationTime="1.0843714299834574E7" upperBound="11.384881796297881"/>
+            <sample lastIntervalAvgValue="10.25713041279941" lowerBound="10.492965252558903" meanValue="10.94033099469217" simulationTime="1.1119671531542078E7" upperBound="11.387696736825434"/>
+            <sample lastIntervalAvgValue="8.74021112970465" lowerBound="10.49544464700134" meanValue="10.942916097683913" simulationTime="1.139330653278068E7" upperBound="11.390387548366485"/>
+            <sample lastIntervalAvgValue="10.776191131983436" lowerBound="10.497751581121587" meanValue="10.945321387537732" simulationTime="1.1665834082188679E7" upperBound="11.392891193953876"/>
+            <sample lastIntervalAvgValue="10.257051889481646" lowerBound="10.497575061437646" meanValue="10.945137341967875" simulationTime="1.181539825638762E7" upperBound="11.392699622498103"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="51200" discardedSamples="675" finalValue="0.050795877466880864" name="I/O_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="I/O" state="1" type="2">
+            <sample lastIntervalAvgValue="0.05106968489805741" meanValue="0.05106968489805741" simulationTime="84771.24253816814"/>
+            <sample lastIntervalAvgValue="0.051345340185620474" lowerBound="0.04812025918215787" meanValue="0.05042572179375497" simulationTime="302541.74767624977" upperBound="0.05273118440535207"/>
+            <sample lastIntervalAvgValue="0.05007584129905996" lowerBound="0.048239059421791075" meanValue="0.05065006198523141" simulationTime="554672.1451253616" upperBound="0.05306106454867174"/>
+            <sample lastIntervalAvgValue="0.05138134450963909" lowerBound="0.048239059421791075" meanValue="0.05065006198523141" simulationTime="817704.1663401666" upperBound="0.05306106454867174"/>
+            <sample lastIntervalAvgValue="0.05163562573826099" lowerBound="0.04915531912099989" meanValue="0.05105144448681637" simulationTime="1079842.4515130327" upperBound="0.05294756985263286"/>
+            <sample lastIntervalAvgValue="0.05022425810949051" lowerBound="0.04915531912099989" meanValue="0.05105144448681637" simulationTime="1341535.1034837726" upperBound="0.05294756985263286"/>
+            <sample lastIntervalAvgValue="0.0501780601441233" lowerBound="0.04915531912099989" meanValue="0.05105144448681637" simulationTime="1611619.7747046854" upperBound="0.05294756985263286"/>
+            <sample lastIntervalAvgValue="0.05097443468022906" lowerBound="0.04989840496459604" meanValue="0.050795877466880864" simulationTime="1707293.653336567" upperBound="0.051693349969165685"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="305" finalValue="0.2164850949901718" name="Storage_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Storage" state="1" type="2">
+            <sample lastIntervalAvgValue="0.21497785458005464" lowerBound="0.20796058329006897" meanValue="0.2157797991811842" simulationTime="84807.44891973141" upperBound="0.22359901507229943"/>
+            <sample lastIntervalAvgValue="0.21782219414122364" lowerBound="0.21257668957052536" meanValue="0.2164850949901718" simulationTime="135735.4258459882" upperBound="0.22039350040981823"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="40960" discardedSamples="125" finalValue="0.005567322739573649" name="Network_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Network" state="1" type="2">
+            <sample lastIntervalAvgValue="0.005535969271868243" lowerBound="0.0053227556425345345" meanValue="0.005549446931358982" simulationTime="84807.48584854857" upperBound="0.005776138220183429"/>
+            <sample lastIntervalAvgValue="0.00559144939452982" lowerBound="0.005446488252780388" meanValue="0.005567322739573649" simulationTime="149592.07067262862" upperBound="0.005688157226366911"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="348160" discardedSamples="19835" finalValue="50.04166634838694" name="High Perfomance Cores_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="High Perfomance Cores" state="1" type="2">
+            <sample lastIntervalAvgValue="51.105131885511256" meanValue="51.105131885511256" simulationTime="84808.42694253237"/>
+            <sample lastIntervalAvgValue="50.325067775584145" lowerBound="46.45781457352181" meanValue="50.58478892760014" simulationTime="302567.077373903" upperBound="54.711763281678465"/>
+            <sample lastIntervalAvgValue="51.90929507668858" lowerBound="48.33837958543597" meanValue="51.684999890254716" simulationTime="554689.8683041447" upperBound="55.03162019507346"/>
+            <sample lastIntervalAvgValue="51.09667185795983" lowerBound="49.32486917834848" meanValue="51.01447448630681" simulationTime="817711.5448820039" upperBound="52.70407979426514"/>
+            <sample lastIntervalAvgValue="49.46157613059483" lowerBound="49.32486917834848" meanValue="51.01447448630681" simulationTime="1079897.064200962" upperBound="52.70407979426514"/>
+            <sample lastIntervalAvgValue="48.74725799044188" lowerBound="48.56952874841819" meanValue="50.04166634838694" simulationTime="1338019.5322215334" upperBound="51.51380394835569"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="266240" discardedSamples="2080" finalValue="193.55001687690137" name="Energy Efficient Cores_Heavy computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Heavy computation tasks" referenceStation="Energy Efficient Cores" state="1" type="2">
+            <sample lastIntervalAvgValue="202.2031610407627" meanValue="202.2031610407627" simulationTime="84804.61558112789"/>
+            <sample lastIntervalAvgValue="194.86413128520158" meanValue="196.8908820628436" simulationTime="302570.36720691016"/>
+            <sample lastIntervalAvgValue="181.20987032358178" lowerBound="150.72515690729392" meanValue="186.95262455942552" simulationTime="554674.7749817717" upperBound="223.1800922115571"/>
+            <sample lastIntervalAvgValue="192.23778425752994" lowerBound="166.78790811587385" meanValue="185.52302926171433" simulationTime="817645.2573536756" upperBound="204.2581504075548"/>
+            <sample lastIntervalAvgValue="207.99075155307014" lowerBound="166.78790811587385" meanValue="185.52302926171433" simulationTime="1079772.0171381831" upperBound="204.2581504075548"/>
+            <sample lastIntervalAvgValue="214.97298720583532" lowerBound="182.30201452603234" meanValue="195.71842420369464" simulationTime="1341520.2503099076" upperBound="209.13483388135694"/>
+            <sample lastIntervalAvgValue="207.6586017195015" lowerBound="182.30201452603234" meanValue="195.71842420369464" simulationTime="1611590.0350814834" upperBound="209.13483388135694"/>
+            <sample lastIntervalAvgValue="188.25688834906916" lowerBound="182.30201452603234" meanValue="195.71842420369464" simulationTime="1883276.9430089893" upperBound="209.13483388135694"/>
+            <sample lastIntervalAvgValue="188.1261762669338" lowerBound="182.30201452603234" meanValue="195.71842420369464" simulationTime="2156758.329424964" upperBound="209.13483388135694"/>
+            <sample lastIntervalAvgValue="178.95454801949703" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="2429062.6935588196" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="202.1209525530923" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="2699963.058362388" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="184.77382013506457" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="2968081.9469755613" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="194.95824626782849" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="3239112.5673024766" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="192.23939566416334" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="3510220.971563133" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="195.62695186228154" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="3779311.174079753" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="196.02439153581574" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="4052848.787712515" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="211.61566923954115" lowerBound="187.67316109611076" meanValue="197.11566037852964" simulationTime="4325003.48868175" upperBound="206.55815966094852"/>
+            <sample lastIntervalAvgValue="181.28538725906725" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="4599808.177404801" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="206.7600882734685" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="4872670.090191132" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="203.7954761943681" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="5143291.510076206" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="186.80578551365352" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="5413675.391468222" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="194.23151974738786" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="5685506.546937439" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="186.68915022941079" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="5957096.1283662245" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="186.63997692538953" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="6229479.500328698" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="196.49721715677703" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="6500097.250972501" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="190.32391292364875" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="6771872.6630163435" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="192.854448396348" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="7044747.600105438" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="205.20024991602594" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="7315105.873933098" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="183.4246851109039" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="7588735.682484758" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="187.84969104791872" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="7860506.318712934" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="184.1701345341066" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="8130803.319661488" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="192.7560883519916" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="8402621.672056722" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="200.81644148129007" lowerBound="188.76590577989202" meanValue="195.8847079285342" simulationTime="8672744.64878581" upperBound="203.00351007717637"/>
+            <sample lastIntervalAvgValue="199.22945735914794" lowerBound="189.44333942656618" meanValue="193.55001687690137" simulationTime="8741591.70324461" upperBound="197.65669432723655"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="33280" discardedSamples="980" finalValue="0.15222471429903" name="I/O_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="I/O" state="1" type="2">
+            <sample lastIntervalAvgValue="0.1510210357535087" lowerBound="0.1267867757980956" meanValue="0.1476177443950637" simulationTime="84800.17976647009" upperBound="0.1684487129920318"/>
+            <sample lastIntervalAvgValue="0.1530816528097077" lowerBound="0.14416726512525538" meanValue="0.15146826559769497" simulationTime="302555.0917670598" upperBound="0.15876926607013456"/>
+            <sample lastIntervalAvgValue="0.15141193353697577" lowerBound="0.14890028389257506" meanValue="0.15222471429903" simulationTime="402643.4200372294" upperBound="0.15554914470548495"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="56320" discardedSamples="0" finalValue="0.010715892033095805" name="Storage_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Storage" state="1" type="2">
+            <sample lastIntervalAvgValue="0.010717436663981582" lowerBound="0.01055175632076872" meanValue="0.010715892033095805" simulationTime="67168.92155481211" upperBound="0.01088002774542289"/>
+            <sample lastIntervalAvgValue="0.010717436663981582" lowerBound="0.01055175632076872" meanValue="0.010715892033095805" simulationTime="67168.92155481211" upperBound="0.01088002774542289"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="35840" discardedSamples="135" finalValue="0.13175698150939508" name="Network_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Network" state="1" type="2">
+            <sample lastIntervalAvgValue="0.13180982170551261" lowerBound="0.12985888184133543" meanValue="0.13175698150939508" simulationTime="48288.77519664228" upperBound="0.13365508117745473"/>
+            <sample lastIntervalAvgValue="0.13180982170551261" lowerBound="0.12985888184133543" meanValue="0.13175698150939508" simulationTime="48288.77519664228" upperBound="0.13365508117745473"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="77430" finalValue="29.79668385462964" name="High Perfomance Cores_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="High Perfomance Cores" state="2" type="2">
+            <sample lastIntervalAvgValue="29.31530165139003" meanValue="26.343015122383893" simulationTime="84807.4003560398"/>
+            <sample lastIntervalAvgValue="29.256626418260606" lowerBound="25.15341969990424" meanValue="29.165426935703568" simulationTime="302572.89917241636" upperBound="33.177434171502895"/>
+            <sample lastIntervalAvgValue="30.571225417780585" lowerBound="27.732172709527145" meanValue="30.33072403486378" simulationTime="554695.1069570645" upperBound="32.92927536020042"/>
+            <sample lastIntervalAvgValue="29.801167493324595" lowerBound="28.091592271710457" meanValue="29.79668385462964" simulationTime="817709.9013746558" upperBound="31.501775437548826"/>
+            <sample lastIntervalAvgValue="28.252516415213375" lowerBound="28.091592271710457" meanValue="29.79668385462964" simulationTime="1079899.4512551485" upperBound="31.501775437548826"/>
+            <sample lastIntervalAvgValue="27.0949111725191" lowerBound="28.091592271710457" meanValue="29.79668385462964" simulationTime="1341541.7605070812" upperBound="31.501775437548826"/>
+            <sample lastIntervalAvgValue="28.893169863723728" lowerBound="28.091592271710457" meanValue="29.79668385462964" simulationTime="1406163.057067627" upperBound="31.501775437548826"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="1000000" discardedSamples="5805" finalValue="109.53761104026108" name="Energy Efficient Cores_Low computation tasks_Response Time" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Energy Efficient Cores" state="2" type="2">
+            <sample lastIntervalAvgValue="115.27172823880355" meanValue="115.27172823880355" simulationTime="84805.32718867261"/>
+            <sample lastIntervalAvgValue="110.98379587260298" meanValue="113.24282968471321" simulationTime="302566.03032173234"/>
+            <sample lastIntervalAvgValue="99.11511783348838" lowerBound="73.94042114192327" meanValue="104.69745200723167" simulationTime="554687.0335243508" upperBound="135.45448287254007"/>
+            <sample lastIntervalAvgValue="107.97158705186233" lowerBound="86.30822767762609" meanValue="101.2216928912925" simulationTime="817707.6163806218" upperBound="116.13515810495892"/>
+            <sample lastIntervalAvgValue="121.19074859366027" lowerBound="86.30822767762609" meanValue="101.2216928912925" simulationTime="1079776.8859409983" upperBound="116.13515810495892"/>
+            <sample lastIntervalAvgValue="129.14210814766835" lowerBound="99.02692511444761" meanValue="111.305634643175" simulationTime="1341542.4996288074" upperBound="123.58434417190239"/>
+            <sample lastIntervalAvgValue="122.4058484139487" lowerBound="99.02692511444761" meanValue="111.305634643175" simulationTime="1611607.21747462" upperBound="123.58434417190239"/>
+            <sample lastIntervalAvgValue="104.64783860264001" lowerBound="99.02692511444761" meanValue="111.305634643175" simulationTime="1883292.9891310444" upperBound="123.58434417190239"/>
+            <sample lastIntervalAvgValue="103.7170543884144" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="2156741.712218952" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="96.62613366970314" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="2429080.871692827" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="117.78188367988837" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="2699984.5188188553" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="105.22274975679379" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="2968086.4844287983" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="111.08555778138462" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="3239117.4577175793" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="108.2065165941443" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="3510232.662992517" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="113.39225721806785" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="3779284.38487871" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="111.80725654336578" lowerBound="106.10381705857574" meanValue="113.98198953546971" simulationTime="4052836.808580865" upperBound="121.86016201236367"/>
+            <sample lastIntervalAvgValue="125.02122142524422" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="4324993.374576702" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="97.6878398371747" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="4599839.936618638" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="120.98628691619474" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="4872664.024904296" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="118.61765849806856" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="5143286.582623266" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="103.96705948124776" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="5413681.403320206" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="111.75566498069402" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="5685555.122010947" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="104.52418761157406" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="5957112.482277969" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="100.06663864575764" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="6229491.937228813" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="112.364637351869" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="6500111.036823534" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="107.82928669342647" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="6771882.224273947" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="108.82971261758527" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="7044774.904188404" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="120.0902137475245" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="7315115.06167199" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="99.96516181678892" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="7588762.405039593" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="101.89717086440986" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="7860506.842727098" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="99.13105284493128" lowerBound="104.14722044638626" meanValue="110.63115109813874" simulationTime="8130808.260361121" upperBound="117.11508174989123"/>
+            <sample lastIntervalAvgValue="107.05752039994758" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="8402639.55868308" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="115.98188108327298" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="8672750.91581483" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="118.8396035698362" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="8943929.941388622" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="99.13481441698121" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="9215566.63979892" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="125.45777193747834" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="9486314.864031846" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="107.36859716086987" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="9758669.299096422" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="105.13394223346653" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.0028320681589533E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="107.48642414699806" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.0299943366133207E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="104.3525639195082" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.057394884191997E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="104.90574139319135" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.0843714299834574E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="102.69721840148657" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.1119671531542078E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="87.48873139381745" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.139330653278068E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="107.84500435544139" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.1665834082188679E7" upperBound="114.01676022489781"/>
+            <sample lastIntervalAvgValue="102.65133503457807" lowerBound="105.05846185562436" meanValue="109.53761104026108" simulationTime="1.181539825638762E7" upperBound="114.01676022489781"/>
+        </measure>
+        <measure alpha="0.99" analyzedSamples="204800" discardedSamples="370" finalValue="0.09215868510564335" name="Network_Low computation tasks_Utilization" nodeType="station" precision="0.03" referenceClass="Low computation tasks" referenceStation="Network" state="1" type="6">
+            <sample lastIntervalAvgValue="0.09158448535453086" lowerBound="0.08714537949772222" meanValue="0.09070031589308336" simulationTime="84807.55149256394" upperBound="0.0942552522884445"/>
+            <sample lastIntervalAvgValue="0.09419850723127544" lowerBound="0.08959708092498853" meanValue="0.09215868510564335" simulationTime="99370.76801787995" upperBound="0.09472028928629816"/>
+        </measure>
+    </results>
+</archive>
